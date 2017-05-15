@@ -61,13 +61,12 @@
 		}
 	}
 
-	/*function sendResult($emailProf, $emailStudent){
+	function sendResult($emailProf, $emailStudent){
 		$objetProf = 'Résultats QCM de '.$prenom.' '.upperCase($nom);
-		$messageProf = 'Le résultat de '.$prenom.' '.upperCase($nom). 'est de '$resultat;
+		$messageProf = 'Le résultat de '.$prenom.' '.upperCase($nom). 'est de '.$resultat;
 		$objetStudent = 'Ton ésultats QCM';
-		$messageStudent = 'Le résultat est de '$resultat;
+		$messageStudent = 'Le résultat est de '.$resultat;
 		mail($emailProf, $objetProf, $messageProf);
 		mail($emailStudent, $objetStudent, $messageStudent);
 	}
-	*/
 ?>

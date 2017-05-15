@@ -11,7 +11,7 @@
 
 		<h1>QCM</h1>
 
-		<form method='POST' action='validator.php'>
+		<form method='POST' action='resultat.php'>
 			<div class='form-group'>
 				<h4>Etudiant</h4>
 					<label for="prenom">Prenom
