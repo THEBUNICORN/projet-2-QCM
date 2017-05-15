@@ -28,10 +28,10 @@
 				<h1>Résultats</h1>
 				<p class="resultat">
 			<?php
-				echo (checkIfComplete($nbRepExpected, 10));
 				echo (verif($nbRepExpected, $prenom));
 				sendResult($$emailProf, $emailStudent);
 			}
+			else {
 			?>
 
 		<h1>QCM</h1>
@@ -293,7 +293,7 @@
 
 		</form>
 
-
+			<?php
 			}
 			?>
 
@@ -303,11 +303,6 @@
 </html>
 
 <?php
-	function checkIfComplete($nbRepExpected, $nbRepToBe){
-		if ($nbRepExpected != $nbRepToBe){
-			echo "Réponds à toutes les questions pour avoir ton résultat";
-		}
-	}
 
 	function verif($nbRepExpected, $prenom){
 		$good = 0;
@@ -333,4 +328,3 @@
 		mail($emailProf, $objetProf, $messageProf);
 		mail($emailStudent, $objetStudent, $messageStudent);
 	}
-?>
