@@ -32,13 +32,13 @@
 				<div class="radio">
 				  <label for='Q1.1'>
 				    <input type="radio" name="Q1" id="Q1.1" value="correc">
-				    A, la réponse A
+				    for (initiation, tant que, itération){}
 				  </label>
 				</div>
 				<div class="radio">
 				  <label for='Q1.2'>
 				    <input type="radio" name="Q1" id="Q1.2" value="incorrec">
-				    B, la réponse B
+				    for (you; only you; love me tender)
 				  </label>
 				</div>
 				<div class="radio">
@@ -55,19 +55,19 @@
 				<div class="radio">
 				  <label for='Q2.1'>
 				    <input type="radio" name="Q2" id="Q2.1" value="incorrec">
-				    A, la réponse A
+				    A, la réponse A.
 				  </label>
 				</div>
 				<div class="radio">
 				  <label for='Q2.2'>
 				    <input type="radio" name="Q2" id="Q2.2" value="correc">
-				    B, la réponse B
+				    While s'effectue en boucle tant qu'une situation perdure. La boucle For aussi mais inclut une initiation et une intération.
 				  </label>
 				</div>
 				<div class="radio">
 				  <label for='Q2.3'>
 				    <input type="radio" name="Q2" id="Q2.3" value="incorrec">
-				    C, la réponse C
+				    While est assimilé à une baleine pour des raisons phonétiques.
 				  </label>
 				</div>
 			</div>
@@ -78,19 +78,19 @@
 				<div class="radio">
 				  <label for='Q3.1'>
 				    <input type="radio" name="Q3" id="Q3.1" value="incorrec">
-				    A, la réponse A
+				    Dans une balse 'dtc'.
 				  </label>
 				</div>
 				<div class="radio">
 				  <label for='Q3.2'>
 				    <input type="radio" name="Q3" id="Q3.2" value="incorrec">
-				    B, la réponse B
+				    B, la réponse B.
 				  </label>
 				</div>
 				<div class="radio">
 				  <label for='Q3.3'>
 				    <input type="radio" name="Q3" id="Q3.3" value="correc">
-				    C, la réponse C
+				    De préférence à la fin du body afin de ne pas rallentir l'exécution de la page.
 				  </label>
 				</div>
 			</div>
@@ -101,13 +101,13 @@
 				<div class="radio">
 				  <label for='Q4.1'>
 				    <input type="radio" name="Q4" id="Q4.1" value="correc">
-				    A, la réponse A
+				    Les guillements
 				  </label>
 				</div>
 				<div class="radio">
 				  <label for='Q4.2'>
 				    <input type="radio" name="Q4" id="Q4.2" value="incorrec">
-				    B, la réponse B
+				    Ton string
 				  </label>
 				</div>
 				<div class="radio">
@@ -124,13 +124,13 @@
 				<div class="radio">
 				  <label for='Q5.1'>
 				    <input type="radio" name="Q5" id="Q5.1" value="incorrec">
-				    A, la réponse A
+				    function{};
 				  </label>
 				</div>
 				<div class="radio">
 				  <label for='Q5.2'>
 				    <input type="radio" name="Q5" id="Q5.2" value="correc">
-				    B, la réponse B
+				    Comme en PHP
 				  </label>
 				</div>
 				<div class="radio">
@@ -147,8 +147,8 @@
 				<div class="radio">
 				  <label for='Q6.1'>
 				    <input type="radio" name="Q6" id="Q6.1" value="incorrec">
-				    A, la réponse A
-				  </label>
+					Une description de la météo
+				 </label>
 				</div>
 				<div class="radio">
 				  <label for='Q6.2'>
@@ -159,7 +159,7 @@
 				<div class="radio">
 				  <label for='Q6.3'>
 				    <input type="radio" name="Q6" id="Q6.3" value="correc">
-				    C, la réponse C
+				     Une donnée qu'on stocke pour un usage ultérieur
 				  </label>
 				</div>
 			</div>
@@ -170,13 +170,13 @@
 				<div class="radio">
 				  <label for='Q7.1'>
 				    <input type="radio" name="Q7" id="Q7.1" value="correc">
-				    A, la réponse A
+				    var x = "";
 				  </label>
 				</div>
 				<div class="radio">
 				  <label for='Q7.2'>
 				    <input type="radio" name="Q7" id="Q7.2" value="incorrec">
-				    B, la réponse B
+				    var type string = ();
 				  </label>
 				</div>
 				<div class="radio">
@@ -193,13 +193,13 @@
 				<div class="radio">
 				  <label for='Q8.1'>
 				    <input type="radio" name="Q8" id="Q8.1" value="incorrec">
-				    A, la réponse A
+				    L'égalité n'est qu'une illusion
 				  </label>
 				</div>
 				<div class="radio">
 				  <label for='Q8.2'>
 				    <input type="radio" name="Q8" id="Q8.2" value="correc">
-				    B, la réponse B
+				    Assignation, équivalence de valeur, équivalence absolue
 				  </label>
 				</div>
 				<div class="radio">
@@ -216,7 +216,7 @@
 				<div class="radio">
 				  <label for='Q9.1'>
 				    <input type="radio" name="Q9" id="Q9.1" value="incorrec">
-				    A, la réponse A
+				    L'un est issu de l'autre
 				  </label>
 				</div>
 				<div class="radio">
@@ -228,7 +228,7 @@
 				<div class="radio">
 				  <label for='Q9.3'>
 				    <input type="radio" name="Q9" id="Q9.3" value="correc">
-				    C, la réponse C
+				    Purement marketing
 				  </label>
 				</div>
 			</div>
@@ -239,13 +239,13 @@
 				<div class="radio">
 				  <label for='Q10.1'>
 				    <input type="radio" name="Q10" id="Q10.1" value="correc">
-				    A, la réponse A
+				    Zero
 				  </label>
 				</div>
 				<div class="radio">
 				  <label for='Q10.2'>
 				    <input type="radio" name="Q10" id="Q10.2" value="incorrec">
-				    B, la réponse B
+				    6
 				  </label>
 				</div>
 				<div class="radio">

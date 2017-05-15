@@ -1,9 +1,5 @@
 <?php
 
-	echo "<pre>";
-	print_r($_POST);
-	echo "</pre>";
-
 	if (isset($_POST['nbRepExpected'])){
 		$nbRepExpected = $_POST['nbRepExpected'];
 		$prenom = $_POST['prenom'];
@@ -30,7 +26,7 @@
 			<?php
 				echo (checkIfComplete($nbRepExpected, 10));
 				echo (verif($nbRepExpected, $prenom));
-				//sendResult();
+				sendResult($$emailProf, $emailStudent);
 			?>
 
 			</p>
