@@ -275,7 +275,7 @@
 
 							<?php
 			if (isset($_POST['nbRepExpected'])){
-					echo '<h2>Résultats</h2>';
+					echo '<h2>Résultats:</h2>';
 					echo '<p class="resultat">'.verif($nbRepExpected, $prenom).'</p>';
 					sendResult($emailProf, $emailStudent);
 			}
@@ -300,7 +300,7 @@
 
 	function verif($nbRepExpected, $prenom){
 		$good = 0;
-		for ($i = 1; $i < $nbRepExpected; $i++){
+		for ($i = 1; $i <= $nbRepExpected; $i++){
 			if ($_POST['Q'.$i] == 'correc'){
 				$good = $good + 1;
 			}
