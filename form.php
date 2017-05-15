@@ -10,7 +10,7 @@
 
 		<h1>QCM</h1>
 
-		<form method='post' action='validator.php'>
+		<form method='POST' action='validator.php'>
 			<div class='form-group'>
 				<h4>Etudiant</h4>
 					<label for="prenom">Prenom
@@ -239,6 +239,10 @@
 				    C, la réponse C
 				  </label>
 				</div>
+			</div>
+
+			<div style='display: none' class='form-group'>
+				<input name="nbRepExpected" value="10">
 			</div>
 
 			<div class='form-group'>
