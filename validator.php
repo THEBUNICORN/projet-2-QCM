@@ -8,7 +8,8 @@
 		$nbRepExpected = $_POST['nbRepExpected'];
 		$prenom = $_POST['prenom'];
 		$nom = $_POST['nom'];
-		//checkIfComplete($repExpected);
+		$emailStudent = $_POST['email'];
+		$emailProf = 'becode@becode.org';
 	}
 
 ?>
@@ -27,7 +28,9 @@
 			<p>
 
 			<?php
+				echo (checkIfComplete($nbRepExpected, 10));
 				echo (verif($nbRepExpected, $prenom));
+				//sendResult();
 			?>
 
 			</p>
@@ -36,16 +39,16 @@
 </html>
 
 <?php
-	/*function checkIfComplete($nbRepExpected){
-		if ($nbRep != $nbRep){
+	function checkIfComplete($nbRepExpected, $nbRepToBe){
+		if ($nbRepExpected != $nbRepToBe){
 			echo "Réponds à toutes les questions pour avoir ton résultat";
 		}
-	}*/
+	}
 
 	function verif($nbRepExpected, $prenom){
 		$good = 0;
 		for ($i = 1; $i < $nbRepExpected; $i++){
-			if ($_POST['Q'.$i] == 'true'){
+			if ($_POST['Q'.$i] == 'correc'){
 				$good = $good + 1;
 			}
 		}
@@ -57,4 +60,14 @@
 			return $prenom . ', va falloir bosser. Ton résultat est de '. $resultat . '%!';
 		}
 	}
+
+	/*function sendResult($emailProf, $emailStudent){
+		$objetProf = 'Résultats QCM de '.$prenom.' '.upperCase($nom);
+		$messageProf = 'Le résultat de '.$prenom.' '.upperCase($nom). 'est de '$resultat;
+		$objetStudent = 'Ton ésultats QCM';
+		$messageStudent = 'Le résultat est de '$resultat;
+		mail($emailProf, $objetProf, $messageProf);
+		mail($emailStudent, $objetStudent, $messageStudent);
+	}
+	*/
 ?>
