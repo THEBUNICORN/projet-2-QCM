@@ -19,14 +19,6 @@
 
 	<body>
 
-			<?php
-			if (isset($_POST['nbRepExpected'])){
-					echo '<h1>Résultats</h1>';
-					// echo verif($nbRepExpected, $prenom);
-					// sendResult($emailProf, $emailStudent);
-			}
-
-			?>
 				<h1>QCM</h1>
 				<form method='POST'>
 					<div class='form-group'>
@@ -280,6 +272,15 @@
 					<div class='form-group'>
 						<button type='submit' class="btn btn-default">Vérifier mes réponses</button>
 					</div>
+
+							<?php
+			if (isset($_POST['nbRepExpected'])){
+					echo '<h2>Résultats</h2>';
+					echo '<p class="resultat">'.verif($nbRepExpected, $prenom).'</p>';
+					sendResult($emailProf, $emailStudent);
+			}
+
+			?>
 				</form>
 	</body>
 </html>
