@@ -17,6 +17,7 @@ form {
 
 input[class="form-control"]{
 	width: 10em;
+	margin-right: 15px;
 }
 
 
@@ -30,4 +31,16 @@ body {
 	margin-top: 20px;
 	text-align: center;
 	font-size: 2em;
+}
+
+.green {
+	background: green;
+	border-radius: 5px;
+	padding: 3px;
+}
+
+.red {
+	background: red;
+	border-radius: 5px;
+	padding: 5px;
 }
