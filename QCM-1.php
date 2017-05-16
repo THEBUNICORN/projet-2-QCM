@@ -6,6 +6,26 @@
 		$emailStudent = $_POST['email'];
 		$emailProf = 'becode@becode.org';
 	}
+
+	$questionnaire = array(
+						array ('question' => 'kiki?',
+								'correct' => 'kiki',
+								'incorrect' => 'koko',
+								'incorrect' => 'kuku'
+								),
+						array ('question' => 'koko?',
+								'correct' => 'koko',
+								'incorrect' => 'kiki',
+								'incorrect' => 'kuku'
+								),
+						array ('question' => 'kuku?',
+								'correct' => 'kuku',
+								'incorrect' => 'koko',
+								'incorrect' => 'kiki'
+								)
+						);
+
+	print_r($questionnaire);
 ?>
 
 <!DOCTYPE html>
@@ -266,7 +286,7 @@
 					</div>
 
 					<div style='display: none' class='form-group'>
-						<input name="nbRepExpected" value="10">
+						<input name="submitted" value="submitted">
 					</div>
 
 					<div class='form-group'>
