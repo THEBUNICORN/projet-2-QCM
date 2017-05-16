@@ -2,11 +2,12 @@
 	
 	if (isset($_POST['submitted'])){
 		$submitted = true;
-		$nbRepExpected = $_POST['nbRepExpected'];
-		$prenom = $_POST['prenom'];
-		$nom = $_POST['nom'];
+		$nbsubmitted = $_POST['submitted'];
+		$prenom = ucfirst($_POST['prenom']);
+		$nom = ucfirst($_POST['nom']);
 		$emailStudent = $_POST['email'];
 		$emailProf = 'becode@becode.org';
+		$formulaire= $_POST;
 	}
 	else {
 		$submitted = false;
@@ -30,8 +31,6 @@
 								)
 	);
 
-
-	print_r($questionnaire);
 ?>
 
 <!DOCTYPE html>
@@ -47,9 +46,9 @@
 
 		<h1>QCM</h1>
 
-		<?php 
+		<?php
 		if ($submitted){
-			echo "submitted really?";
+			correctifGen($formulaire);
 		}
 
 		else {
@@ -72,10 +71,6 @@
 				questionGen($questionnaire);
 			?>
 
-			<div style='display: none' class='form-group'>
-				<input name="submitted" value="submitted">
-			</div>
-
 			<div class='form-group'>
 				<button type='submit' class="btn btn-default">Vérifier mes réponses</button>
 			</div>
@@ -97,43 +92,91 @@
 			echo "<div class='form-group'>";
 			echo "<h4>Question " . $num . "</h4>";
 			// Enoncé de la question
-			echo "<p>" . $question[0] . "</p>";
+			echo "<p class='question'>" . $question[0] . "</p>";
 			// Parcourir les champs des questions skipant le 1er champ (énoncé)
 			 	for ($i = 1; $i <=3; $i++) {
-						// le premier choix est correct
-						if ($i == 1){
-							$orNot = 'correct';
-						}
-						// Sinon (3ème ou 4ème champs) orNot est incorrect
-						else {
-							$orNot = 'incorrect';
-						}
-					// Générer le contenu du choix en prenant en compte orNot
-					$choixHtml = "<div class='radio'> <label for='" . $num . $i . "'> <input type='radio' name='Q" . $num . "' id='" . $num . $i . "' value='".$orNot."'>" . $question[$i] . "</label>";
+					// Génération d'un code d'identification réponse
+					$codeRep = $num . '-' . $i ;
+	
+					// Générer le contenu du choix
+					$choixHtml = "<div class='radio'> <label for='" . $codeRep . "'> <input type='radio' name='Q" . $num . "' id='" . $codeRep. "' value='" . $codeRep . "'>" . $question[$i] . "</label>";
 					echo $choixHtml;
 					echo "</div>";
 					}
 			$num++;
-			echo "</div> </div>";
+			echo "</div>";
 		}
+	echo " <div style='display: none' class='form-group'>
+						<input name='submitted' value=" . $num . ">
+					</div> ";
 	}
-		
 
-?>n as $id => $choix) {
-				if ($choix != $question[0])
-					$choix = "<div class='radio'> label for='" . $num[$question][] . "'> <input type='radio' name='Q" . $num . "' id='" . $num[$question][$i] . "' value='''"
 
+	function correctifGen($formulaire){
+	 // créer un array avec les codes réponses de l'étudiant
+		$repStudent = [];
+		foreach ($formulaire as $key => $value) {
+			if ((substr($key, 0, 1)) == 'Q') {
+				$codeQ = substr($key, 1, 1);
+				$codeR = substr($value, 2, 1);
+				$repStudent[$codeQ] = $codeR;
 			}
-			$choix = "<div class='radio'> label for='" . $num[$question][] . "'> <input type='radio' name='Q" . $num . "' id='" . $num[$question][$i] . "' value='''"
-				}
-
-
-			echo "label "
-				if ($type != 'question'){
-			$choice.$num = 	"<div class='radio'> label for='" . $num[$question][$i] . "'> <input type='radio' name='Q" . $num . "' id='" . $num[$question][$i] . "' value='''"
-				}
-			}
-		$num++;
 		}
 
+	// compter les points
+		$good = 0;
+		foreach ($repStudent as $codeQ => $codeR) {
+			if ($codeR == 1){
+				$good++;
+			}
+		}
+	// préparer un message en fonction
+		global $nbsubmitted;
+		$resultat = 100*($good/$nbsubmitted);
+		if ($resultat > 50){
+			$msg = 'Bravo '. $prenom . ', ton résultat est de ' . $resultat . '%!';
+		}
+		else {
+			$msg = $prenom . ', va falloir bosser. Ton résultat est de '. $resultat . '%!';
+		}
+		echo "<p class='resultat'>" . $msg . "</p>";
+
+	// Préparation de l'affichage du correctif
+		// Numérotation des questions commence à 1
+		?><p>
+		<span class='good'>Correction</span>
+		<span class='response'>-1 point</span>
+		<span class='responsegood'>+1 point</span>
+		</p>
+		<?php
+		$num = 1;
+		global $questionnaire;
+		// Parcourrir le questionnaire
+		foreach ($questionnaire as $question) {
+			echo "<div class='form-group'>";
+			echo "<h4>Question " . $num . "</h4>";
+			// Enoncé de la question
+			echo "<p>" . $question[0] . "</p>";
+			// Parcourir les champs des questions skipant le 1er champ (énoncé)
+			 	for ($i = 1; $i <=3; $i++) {
+					// Ajout d'une classe pour la réponse entrée par l'étudiant
+					$class1 = "";
+					$class2 = "";
+					if ($i == $repStudent[$num]) {
+						$class1 = "response";
+					}
+					// Ajout d'une classe pour la réponse correcte
+					if ($i == 1){
+						$class2 = "good";
+					}
+					$class = "class='" . $class1 . $class2 . "'";
+	
+					// Générer le contenu du choix
+					$choixHtml = "<p " . $class . ">" . $question[$i] . "</p>";
+					echo $choixHtml;
+				}
+			$num++;
+			echo "</div>";
+		}
 	}
+?>
