@@ -34,13 +34,13 @@ body {
 }
 
 .green {
-	background: green;
+	background:  #00b33c;
 	border-radius: 5px;
-	padding: 3px;
+	padding: 2px;
 }
 
 .red {
-	background: red;
+	background:  #ff3333;
 	border-radius: 5px;
-	padding: 5px;
+	padding: 2px;
 }
