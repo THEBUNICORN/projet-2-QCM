@@ -174,10 +174,16 @@
 				$good++;
 			}
 		}
+		$wrong = 0;
+		foreach ($repStudent as $codeQ => $codeR) {
+			if ($codeR == 2 OR $codeR == 3){
+				$wrong++;
+			}
+		}
 	// préparer un message en fonction
 		global $nbsubmitted;
 		global $prenom;
-		$resultat = 100*($good/$nbsubmitted);
+		$resultat = 100*(($good - $wrong)/$nbsubmitted);
 		if ($resultat > 50){
 			$msg = 'Bravo '. $prenom . ', ton résultat est de ' . $resultat . '%!';
 		}
@@ -189,9 +195,10 @@
 	// Préparation de l'affichage du correctif
 		// Numérotation des questions commence à 1
 		?><p>
-		<span class='good'>Correction</span>
-		<span class='response'>-1 point</span>
-		<span class='responsegood'>+1 point</span>
+		<br>
+		<p class='good'>  Correction  </p>
+		<p class='response'>  -1 point  </p>
+		<p class='responsegood'>  +1 point  </p>
 		</p>
 		<?php
 		$num = 1;
