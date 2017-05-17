@@ -8,6 +8,7 @@
 		$emailStudent = $_POST['email'];
 		$emailProf = 'becode@becode.org';
 		$formulaire= $_POST;
+
 	}
 	else {
 		$submitted = false;
@@ -65,7 +66,6 @@
 								'Sacha Guitry'
 								)
 	);
-
 ?>
 
 <!DOCTYPE html>
@@ -106,7 +106,6 @@
 			<?php
 				questionGen($questionnaire);
 			?>
-
 			<div class='form-group'>
 				<button type='submit' class="btn btn-default">Vérifier mes réponses</button>
 			</div>
@@ -116,6 +115,7 @@
 		}
 		?>
 		</div>
+
 	</body>
 </html>
 
@@ -203,6 +203,7 @@
 		<?php
 		$num = 1;
 		global $questionnaire;
+
 		// Parcourrir le questionnaire
 		foreach ($questionnaire as $question) {
 			echo "<div class='form-group'>";

@@ -1,0 +1,51 @@
+
+
+h1, h2{
+	text-align: center;
+}
+
+
+.form-group, button{
+	margin-top: 40px;
+	border-top: 1px dotted white;
+}
+
+p {
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+form {
+	margin-left: 4em;
+	margin-right: 4em;
+}
+
+input[class="form-control"]{
+	width: 10em;
+	margin-right: 15px;
+}
+
+
+body {
+	background: #495C70;
+	color: #f0f0f5;
+	font-family: 'Slabo 27px', serif;
+}
+
+.resultat {
+	margin-top: 20px;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+.green {
+	background:  #00b33c;
+	border-radius: 5px;
+	padding: 2px;
+}
+
+.red {
+	background:  #ff3333;
+	border-radius: 5px;
+	padding: 2px;
+}
