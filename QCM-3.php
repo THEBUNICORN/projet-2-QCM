@@ -45,6 +45,7 @@
 	<body>
 
 		<h1>QCM</h1>
+		<div class=container>
 
 		<?php
 		if ($submitted){
@@ -79,6 +80,7 @@
 		<?php
 		}
 		?>
+		</div>
 	</body>
 </html>
 
@@ -86,24 +88,31 @@
 
 	function questionGen($questionnaire){
 		// Numérotation des questions commence à 1
-		$num = 1;
+		$num = 0;
+		global $questionsMultiples;
 		// Parcourrir le questionnaire
+		$questionsMultiples = [];
 		foreach ($questionnaire as $question) {
+			$num++;
 			echo "<div class='form-group'>";
 			echo "<h4>Question " . $num . "</h4>";
 			// Enoncé de la question
 			echo "<p class='question'>" . $question[0] . "</p>";
 			// Parcourir les champs des questions skipant le 1er champ (énoncé)
-			 	for ($i = 1; $i <=3; $i++) {
-					// Génération d'un code d'identification réponse
-					$codeRep = $num . '-' . $i ;
-	
-					// Générer le contenu du choix
-					$choixHtml = "<div class='radio'> <label for='" . $codeRep . "'> <input type='radio' name='Q" . $num . "' id='" . $codeRep. "' value='" . $codeRep . "'>" . $question[$i] . "</label>";
-					echo $choixHtml;
-					echo "</div>";
-					}
-			$num++;
+		 	for ($i = 1; $i <=3; $i++) {
+				// Génération d'un code d'identification réponse
+				$codeRep = $num . '-' . $i ;
+
+				// Générer le contenu du choix
+				$choixHtml = "<div class='radio'> <label for='" . $codeRep . "'> <input type='radio' name='Q" . $num . "' id='" . $codeRep. "' value='" . $codeRep . "'>" . $question[$i] . "</label>";
+				array_push($questionsMultiples, $choixHtml);
+			}
+			shuffle($questionsMultiples);
+			foreach ($questionsMultiples as $choixHtml) {	
+				echo $choixHtml;
+			}
+			$questionsMultiples = [];
+			echo "</div>";
 			echo "</div>";
 		}
 	echo " <div style='display: none' class='form-group'>
@@ -132,6 +141,7 @@
 		}
 	// préparer un message en fonction
 		global $nbsubmitted;
+		global $prenom;
 		$resultat = 100*($good/$nbsubmitted);
 		if ($resultat > 50){
 			$msg = 'Bravo '. $prenom . ', ton résultat est de ' . $resultat . '%!';
