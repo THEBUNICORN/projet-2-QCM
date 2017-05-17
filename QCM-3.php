@@ -1,5 +1,5 @@
 <?php
-	
+// Si formulaire envoyé par POST, déclarer les variables	
 	if (isset($_POST['submitted'])){
 		$submitted = true;
 		$nbsubmitted = $_POST['submitted'];
@@ -14,58 +14,9 @@
 		$submitted = false;
 	}
 
-	$questionnaire = array(
-						array (	'“En ces temps difficiles, il convient d’accorder notre mépris avec parcimonie, tant nombreux sont les nécessiteux.”',
-								'Chateaubriand',
-								'Lamartine',
-								'Chamfort'
-								),
-						array (	'“Rien ne sert de courir, il faut partir à point.”',
-								'Jean de La Fontaine',
-								'Guy Drut',
-								'Pierre de Coubertin'
-								),
-						array (	'“Il est beau qu’un soldat désobéisse à des ordres criminels.”',
-								'Anatole France',
-								'Charles de Gaulle',
-								'Victor Hugo'
-								),
-						array (	'“Le devoir, c’est ce qu’on exige des autres.”',
-								'Alexandre Dumas',
-								'Maréchal Pétain',
-								'Maréchal Foch'
-								),
-						array (	'“Un dictionnaire, c’est tout l’univers par ordre alphabétique.”',
-								'Anatole France',
-								'Victor Hugo',
-								'Diderot'
-								),
-						array (	'“Donner est un plaisir plus durable que recevoir, car celui des deux qui donne est celui qui se souvient le plus longtemps.”',
-								'Chamfort',
-								'Sœur Thérésa',
-								'Saint-Vincent-de-Paul'
-								),
-						array (	'“En opposant la haine à la haine, on ne fait que la répandre, en surface comme en profondeur.”',
-								'Mahatma Gandhi',
-								'Vaclav Havel',
-								'Martin Luhter King'
-								),
-						array (	'“L’histoire est un roman qui a été, le roman est de l’histoire qui aurait pu être.”',
-								'Edmond et Jules de Goncourt',
-								'Jules Michelet',
-								'Marc Bloch'
-								),
-						array (	'“L’homme n’est rien d’autre que la série de ses actes.”',
-								'Hegel',
-								'Karl Marx',
-								'Kant'
-								),
-						array (	'“La femme ne voit jamais ce que l’on fait pour elle ; elle ne voit que ce qu’on ne fait pas.”',
-								'Courteline',
-								'Alphonse Allais',
-								'Sacha Guitry'
-								)
-	);
+//inclusion du formulaire sous forme d'array fourni par le client, ici le système est limité à max 9 questions pour assurer une vérification correcte
+	include 'questionnaire.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -83,10 +34,11 @@
 		<div class=container>
 
 		<?php
+		// si POST sousmis, générer le correctif
 		if ($submitted){
 			correctifGen($formulaire);
 		}
-
+		// si POST pas soumis, générer le formulaire
 		else {
 		?>
 		<form method='POST'>
@@ -121,43 +73,48 @@
 
 <?php
 
+// Générateur de formulaire
 	function questionGen($questionnaire){
-		// Numérotation des questions commence à 1
-		$num = 0;
+		// Déclaration des variables
 		global $questionsMultiples;
-		// Parcourrir le questionnaire
 		$questionsMultiples = [];
+		$num = 0;
+		// Parcourrir le questionnaire
 		foreach ($questionnaire as $question) {
 			$num++;
 			echo "<div class='form-group'>";
+			// Numéro de la question
 			echo "<h4>Question " . $num . "</h4>";
 			// Enoncé de la question
 			echo "<p class='question'>" . $question[0] . "</p>";
 			// Parcourir les champs des questions skipant le 1er champ (énoncé)
 		 	for ($i = 1; $i <=3; $i++) {
-				// Génération d'un code d'identification réponse
+				// Génération d'un code d'identification réponse reprenant le numéro de la question concernée et si la réponse est correcte (1er champs) ou non (2ème et 3ème champs)
 				$codeRep = $num . '-' . $i ;
-
-				// Générer le contenu du choix
-				$choixHtml = "<div class='radio'> <label for='" . $codeRep . "'> <input type='radio' name='Q" . $num . "' id='" . $codeRep. "' value='" . $codeRep . "'>" . $question[$i] . "</label>";
+				// Générer le contenu du choix radio
+				$choixHtml = "<div class='radio'> <label for='" . $codeRep . "'> <input type='radio' name='Q" . $num . "' id='" . $codeRep. "' value='" . $codeRep . "'>" . $question[$i] . "</label> </div>";
+				// ajouter le choix radio dans un array
 				array_push($questionsMultiples, $choixHtml);
 			}
+			// Mélanger les choix afin de les restituer dans un ordre aléatoire
 			shuffle($questionsMultiples);
 			foreach ($questionsMultiples as $choixHtml) {	
 				echo $choixHtml;
 			}
+			// Vider l'array pour la question suivante
 			$questionsMultiples = [];
 			echo "</div>";
-			echo "</div>";
 		}
+		// inclure le nombre de questions en input hidden
 	echo " <div style='display: none' class='form-group'>
 						<input name='submitted' value=" . $num . ">
 					</div> ";
 	}
 
-
+// Générateur de correctif
 	function correctifGen($formulaire){
-	 // créer un array avec les codes réponses de l'étudiant
+	// Calcul et affichage du résultat
+		 // créer un array sur base des codes réponses reprenant le numéro de la question et la réponse de l'étudiant (1, 2 ou 3)
 		$repStudent = [];
 		foreach ($formulaire as $key => $value) {
 			if ((substr($key, 0, 1)) == 'Q') {
@@ -166,21 +123,21 @@
 				$repStudent[$codeQ] = $codeR;
 			}
 		}
-
-	// compter les points
+		// compter les points positif, 1 est la réponse correcte
 		$good = 0;
 		foreach ($repStudent as $codeQ => $codeR) {
 			if ($codeR == 1){
 				$good++;
 			}
 		}
+		// compter les points négatifs, 2 et 3 sont incorrectes
 		$wrong = 0;
 		foreach ($repStudent as $codeQ => $codeR) {
 			if ($codeR == 2 OR $codeR == 3){
 				$wrong++;
 			}
 		}
-	// préparer un message en fonction
+		// calculer le résultat et préparer un message en fonction
 		global $nbsubmitted;
 		global $prenom;
 		$resultat = 100*(($good - $wrong)/$nbsubmitted);
@@ -192,20 +149,22 @@
 		}
 		echo "<p class='resultat'>" . $msg . "</p>";
 
-	// Préparation de l'affichage du correctif
-		// Numérotation des questions commence à 1
+	//  Affichage du correctif
 		?><p>
 		<br>
+		<!-- Affichage de la légende -->
 		<p class='good'>  Correction  </p>
 		<p class='response'>  -1 point  </p>
 		<p class='responsegood'>  +1 point  </p>
 		</p>
 		<?php
-		$num = 1;
+		// Déclaration des variables
+		$num = 0;
 		global $questionnaire;
 
 		// Parcourrir le questionnaire
 		foreach ($questionnaire as $question) {
+			$num++;
 			echo "<div class='form-group'>";
 			echo "<h4>Question " . $num . "</h4>";
 			// Enoncé de la question
@@ -214,21 +173,21 @@
 			 	for ($i = 1; $i <=3; $i++) {
 					// Ajout d'une classe pour la réponse entrée par l'étudiant
 					$class1 = "";
-					$class2 = "";
 					if ($i == $repStudent[$num]) {
 						$class1 = "response";
 					}
 					// Ajout d'une classe pour la réponse correcte
+					$class2 = "";
 					if ($i == 1){
 						$class2 = "good";
 					}
+					// Concaténation de la classe à appliquer
 					$class = "class='" . $class1 . $class2 . "'";
 	
 					// Générer le contenu du choix
 					$choixHtml = "<p " . $class . ">" . $question[$i] . "</p>";
 					echo $choixHtml;
 				}
-			$num++;
 			echo "</div>";
 		}
 	}
