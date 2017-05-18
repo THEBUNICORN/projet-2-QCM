@@ -78,7 +78,7 @@ var_dump($response);
 		}
 		?>
 		</div>
-
+	<script src="script.js"></script>
 	</body>
 </html>
 
