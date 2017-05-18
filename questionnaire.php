@@ -1,5 +1,11 @@
 <?php	
 	$questionnaire = array(
+		// Remplir un "array" par question, nombre illimité de questions
+					//	array ( " Question ",
+					//			" Réponse correcte ",
+					//			" Réponse fausse ",
+					//			" Réponse fausse"
+					//			),
 						array (	'“En ces temps difficiles, il convient d’accorder notre mépris avec parcimonie, tant nombreux sont les nécessiteux.”',
 								'Chateaubriand',
 								'Lamartine',
@@ -44,6 +50,11 @@
 								'Hegel',
 								'Karl Marx',
 								'Kant'
+								),
+						array (	'“L’oeuvre de la nature est bien plus difficile à comprendre que le livre d’un poète.”',
+								'Léonard De Vinci',
+								'Karl Marx',
+								'Martin Luhter King'
 								)
 	);
 ?>

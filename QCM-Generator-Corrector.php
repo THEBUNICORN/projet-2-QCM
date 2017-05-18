@@ -14,7 +14,7 @@
 		$submitted = false;
 	}
 
-//inclusion du formulaire sous forme d'array fourni par le client, ici le système est limité à max 9 questions pour assurer une vérification correcte
+//inclusion du formulaire sous forme d'array rédigé par le client
 	include 'questionnaire.php';
 
 ?>
