@@ -1,4 +1,15 @@
 <?php
+//Add-on Heroku pour envoi d'email
+$ch = curl_init('https://realemail.expeditedaddons.com/?api_key=' . getenv('REALEMAIL_API_KEY') . '&email=email%40example.org&fix_typos=false');
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+var_dump($response);
+
+
+
+
 // Si formulaire envoyé par POST, déclarer les variables	
 	if (isset($_POST['submitted'])){
 		$submitted = true;
@@ -198,9 +209,9 @@
 	function sendResult($emailProf, $emailStudent){
 		global $resultat;
 		$objetProf = 'Résultats QCM de '.$prenom.' '.upperCase($nom);
-		$messageProf = 'Le résultat de '.$prenom.' '.upperCase($nom). 'est de '$resultat;
-		$objetStudent = 'Ton ésultats QCM';
-		$messageStudent = 'Le résultat est de '$resultat;
+		$messageProf = 'Le résultat de '.$prenom.' '.upperCase($nom). 'est de '.$resultat;
+		$objetStudent = 'Ton résultats QCM';
+		$messageStudent = 'Le résultat est de '. $resultat;
 		mail($emailProf, $objetProf, $messageProf);
 		mail($emailStudent, $objetStudent, $messageStudent);
 	}	
