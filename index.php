@@ -113,6 +113,7 @@
 
 // Générateur de correctif
 	function correctifGen($formulaire){
+	global $resultat;
 	// Calcul et affichage du résultat
 		 // créer un array sur base des codes réponses reprenant le numéro de la question et la réponse de l'étudiant (1, 2 ou 3)
 		$repStudent = [];
@@ -192,4 +193,15 @@
 			echo "</div>";
 		}
 	}
+
+// Envoi du résultat par email
+	function sendResult($emailProf, $emailStudent){
+		global $resultat;
+		$objetProf = 'Résultats QCM de '.$prenom.' '.upperCase($nom);
+		$messageProf = 'Le résultat de '.$prenom.' '.upperCase($nom). 'est de '$resultat;
+		$objetStudent = 'Ton ésultats QCM';
+		$messageStudent = 'Le résultat est de '$resultat;
+		mail($emailProf, $objetProf, $messageProf);
+		mail($emailStudent, $objetStudent, $messageStudent);
+	}	
 ?>
