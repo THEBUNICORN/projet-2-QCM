@@ -204,7 +204,7 @@ var_dump($response);
 			echo "</div>";
 		}
 	}
-
+//test commit
 // Envoi du résultat par email
 	function sendResult($emailProf, $emailStudent){
 		global $resultat;
